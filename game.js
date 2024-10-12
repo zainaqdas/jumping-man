@@ -5,7 +5,7 @@ const ctx = canvas.getContext('2d');
 let score = 0;
 let isJumping = false;
 let obstacles = [];
-let obstacleSpeed = 1;
+let obstacleSpeed = 5;
 let gameOver = false;
 
 // Load images
@@ -16,23 +16,23 @@ obstacleImg.src = 'images/obstacle.png'; // Path to your obstacle image
 
 // Character properties
 const character = {
-    x: 0,
-    y: 0, // Ground level
+    x: 50,
+    y: canvas.height - 60, // Adjusted to place at bottom of canvas
     width: 50,
     height: 50,
     gravity: 1,
-    jumpStrength: 30,
+    jumpStrength: 15,
     velocityY: 0
 };
 
 // Ground level constant
-const groundLevel = 0;
+const groundLevel = canvas.height - 60; // Adjust ground level according to character height
 
 // Obstacle properties
 function createObstacle() {
-    const obstacleHeight = 10; // Height of the obstacle image
+    const obstacleHeight = 30; // Height of the obstacle image
     const obstacle = {
-        x: 0,
+        x: canvas.width,
         y: groundLevel - obstacleHeight, // Position it on the ground
         width: 20,
         height: obstacleHeight
@@ -67,11 +67,14 @@ function updateCharacter() {
             character.y = groundLevel;
             isJumping = false;
         }
+    } else {
+        // If not jumping, ensure the character stays at the ground level
+        character.y = groundLevel;
     }
 }
 
 function updateObstacles() {
-    if (Math.random() < 0.05) { // Adjust the frequency of obstacles
+    if (Math.random() < 0.02) { // Adjust the frequency of obstacles
         createObstacle();
     }
     for (let i = 0; i < obstacles.length; i++) {
