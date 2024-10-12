@@ -16,8 +16,8 @@ obstacleImg.src = 'images/obstacle.png'; // Path to your obstacle image
 
 // Character properties
 const character = {
-    x: 20,
-    y: 300, // Ground level
+    x: 0,
+    y: 0, // Ground level
     width: 50,
     height: 50,
     gravity: 1,
@@ -26,7 +26,7 @@ const character = {
 };
 
 // Ground level constant
-const groundLevel = 300;
+const groundLevel = 0;
 
 // Obstacle properties
 function createObstacle() {
@@ -71,7 +71,7 @@ function updateCharacter() {
 }
 
 function updateObstacles() {
-    if (Math.random() < 0.02) { // Adjust the frequency of obstacles
+    if (Math.random() < 0.05) { // Adjust the frequency of obstacles
         createObstacle();
     }
     for (let i = 0; i < obstacles.length; i++) {
