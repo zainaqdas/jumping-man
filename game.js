@@ -21,7 +21,7 @@ const character = {
     width: 50,
     height: 50,
     gravity: 1,
-    jumpStrength: 15,
+    jumpStrength: 30,
     velocityY: 0
 };
 
