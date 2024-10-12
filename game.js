@@ -8,10 +8,16 @@ let obstacles = [];
 let obstacleSpeed = 5;
 let gameOver = false;
 
+// Load images
+const runnerImg = new Image();
+const obstacleImg = new Image();
+runnerImg.src = 'images/runner.png'; // Path to your runner image
+obstacleImg.src = 'images/obstacle.png'; // Path to your obstacle image
+
 // Character properties
 const character = {
     x: 50,
-    y: 300,
+    y: 300, // Ground level
     width: 50,
     height: 50,
     gravity: 1,
@@ -19,12 +25,15 @@ const character = {
     velocityY: 0
 };
 
+// Ground level constant
+const groundLevel = 300;
+
 // Obstacle properties
 function createObstacle() {
-    const obstacleHeight = 30;
+    const obstacleHeight = 30; // Height of the obstacle image
     const obstacle = {
         x: canvas.width,
-        y: 300 - obstacleHeight,
+        y: groundLevel - obstacleHeight, // Position it on the ground
         width: 20,
         height: obstacleHeight
     };
@@ -45,8 +54,7 @@ function gameLoop() {
 }
 
 function drawCharacter() {
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(character.x, character.y, character.width, character.height);
+    ctx.drawImage(runnerImg, character.x, character.y, character.width, character.height);
 }
 
 function updateCharacter() {
@@ -54,8 +62,9 @@ function updateCharacter() {
         character.velocityY -= character.gravity;
         character.y -= character.velocityY;
 
-        if (character.y >= 300) {
-            character.y = 300;
+        // Prevent the character from falling below the ground level
+        if (character.y >= groundLevel) {
+            character.y = groundLevel;
             isJumping = false;
         }
     }
@@ -73,9 +82,8 @@ function updateObstacles() {
 }
 
 function drawObstacles() {
-    ctx.fillStyle = 'red';
     for (let obstacle of obstacles) {
-        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+        ctx.drawImage(obstacleImg, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
     }
 }
 
@@ -107,4 +115,4 @@ canvas.addEventListener('touchstart', (event) => {
 });
 
 // Start the game loop
-gameLoop(); 
+gameLoop();
