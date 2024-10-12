@@ -7,6 +7,8 @@ let isJumping = false;
 let obstacles = [];
 let obstacleSpeed = 5;
 let gameOver = false;
+let obstacleCooldown = 2000; // Time in milliseconds between obstacles
+let lastObstacleTime = 0; // Track last obstacle generation time
 
 // Load images
 const runnerImg = new Image();
@@ -41,8 +43,15 @@ function createObstacle() {
 }
 
 // Game loop
-function gameLoop() {
+function gameLoop(timestamp) {
     if (gameOver) return;
+
+    // Check if enough time has passed to generate a new obstacle
+    if (timestamp - lastObstacleTime >= obstacleCooldown && obstacles.length === 0) {
+        createObstacle();
+        lastObstacleTime = timestamp; // Update the last obstacle time
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawCharacter();
     updateCharacter();
@@ -74,9 +83,6 @@ function updateCharacter() {
 }
 
 function updateObstacles() {
-    if (Math.random() < 0.02) { // Adjust the frequency of obstacles
-        createObstacle();
-    }
     for (let i = 0; i < obstacles.length; i++) {
         obstacles[i].x -= obstacleSpeed;
     }
@@ -118,4 +124,4 @@ canvas.addEventListener('touchstart', (event) => {
 });
 
 // Start the game loop
-gameLoop();
+requestAnimationFrame(gameLoop);
