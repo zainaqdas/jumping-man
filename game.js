@@ -30,7 +30,7 @@ const groundLevel = 300;
 
 // Obstacle properties
 function createObstacle() {
-    const obstacleHeight = 30; // Height of the obstacle image
+    const obstacleHeight = 10; // Height of the obstacle image
     const obstacle = {
         x: canvas.width,
         y: groundLevel - obstacleHeight, // Position it on the ground
