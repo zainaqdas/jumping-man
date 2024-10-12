@@ -5,7 +5,7 @@ const ctx = canvas.getContext('2d');
 let score = 0;
 let isJumping = false;
 let obstacles = [];
-let obstacleSpeed = 5;
+let obstacleSpeed = 1;
 let gameOver = false;
 
 // Load images
@@ -16,7 +16,7 @@ obstacleImg.src = 'images/obstacle.png'; // Path to your obstacle image
 
 // Character properties
 const character = {
-    x: 50,
+    x: 20,
     y: 300, // Ground level
     width: 50,
     height: 50,
@@ -32,7 +32,7 @@ const groundLevel = 300;
 function createObstacle() {
     const obstacleHeight = 10; // Height of the obstacle image
     const obstacle = {
-        x: canvas.width,
+        x: 0,
         y: groundLevel - obstacleHeight, // Position it on the ground
         width: 20,
         height: obstacleHeight
