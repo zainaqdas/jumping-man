@@ -5,7 +5,7 @@ body {
 }
 
 canvas {
-    background: lightblue;
+    background: white;
     display: block;
     margin: 0 auto;
     position: relative;
