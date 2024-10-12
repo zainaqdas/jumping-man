@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+canvas {
+    background: lightblue;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid black;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    color: black;
+}
